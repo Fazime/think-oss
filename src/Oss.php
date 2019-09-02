@@ -1,7 +1,7 @@
 <?php
-namespace fazi\Oss;
+namespace fazi\oss;
 
-class Oss
+class OSS
 {
 	
 }
