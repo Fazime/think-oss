@@ -1,0 +1,21 @@
+{
+  "name": "fazi/think-oss",
+  "description": "Aliyun Oss SDK From think6",
+  "authors": [
+    {
+      "name": "Fazi",
+      "homepage": "http://www.fazi.me",
+      "email": "i@fazi.me"
+    }
+  ],
+  "license": "MIT",
+  "require": {
+    "php": "^7.0",
+    "aliyuncs/oss-sdk-php": "^1.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "fazime\\think-oss\\": "src/"
+    }
+  }
+}
