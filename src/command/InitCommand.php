@@ -18,10 +18,16 @@ class InitCommand extends \think\console\Command
     public function execute(Input $input, Output $output)
     {
         $path = app()->getAppPath().'..'.DIRECTORY_SEPARATOR.'.env';
-	    file_put_contents($path,
-		    PHP_EOL."[OSS]".PHP_EOL."ENDPOINT=oss-cn-shenzhen.aliyuncs.com".PHP_EOL,
-		    FILE_APPEND);
-	    $output->writeln('OSS ENV has set');
+	    if (file_exists($path)
+		    && strpos(file_get_contents($path), '[OSS]')
+	    ) {
+		    $output->writeln('OSS ENV is exists');
+	    } else {
+		    file_put_contents($path,
+			    PHP_EOL . "[OSS]" . PHP_EOL . "ENDPOINT=oss-cn-shenzhen.aliyuncs.com" . PHP_EOL,
+			    FILE_APPEND);
+		    $output->writeln('OSS ENV has set');
+	    }
         $this->createConfig($output);
     }
 
@@ -35,7 +41,7 @@ class InitCommand extends \think\console\Command
 
             return;
         }
-        $res = copy(__DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'..'
+        $res = copy(__DIR__.DIRECTORY_SEPARATOR.'..'
             .DIRECTORY_SEPARATOR.'config'.DIRECTORY_SEPARATOR
             .'config.php', $configFilePath);
         if ($res) {
