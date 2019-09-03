@@ -5,6 +5,7 @@ namespace fazi\oss\command;
 
 use think\console\Input;
 use think\console\Output;
+use think\facade\App;
 
 class InitCommand extends \think\console\Command
 {

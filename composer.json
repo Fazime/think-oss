@@ -4,7 +4,7 @@
   "authors": [
     {
       "name": "Fazi",
-      "homepage": "http://www.fazi.me",
+      "homepage": "https://www.fazi.me",
       "email": "i@fazi.me"
     }
   ],
@@ -16,7 +16,14 @@
   },
   "autoload": {
     "psr-4": {
-      "fazime\\think-oss\\": "src/"
+      "fazi\\oss\\": "src/"
+    }
+  },
+  "extra": {
+    "think": {
+      "services": [
+        "fazi\\oss\\Service"
+      ]
     }
   },
   "minimum-stability": "dev"
