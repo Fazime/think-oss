@@ -1,7 +1,7 @@
 <?php
 
 
-namespace thans\jwt\command;
+namespace fazi\oss\command;
 
 use think\console\Input;
 use think\console\Output;
