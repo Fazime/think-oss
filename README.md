@@ -29,6 +29,7 @@
  - 配置
  
     ***.env*** 里配置好阿里云endpoint
+    
     ***/config/oss.php*** 阿里云子accessKeyIds相关配置
     
  - 目前未集成ThinkPHP6上传功能。所以需要在需要OSS上传的时候调用。
@@ -45,7 +46,7 @@
         //切换bucket
         $oss->setBucket('custom');#配置文件中自定义名
         //或者
-        $oss->bucket = think\facade\Config::get('oss.bucket.custom');
+        $oss->bucket = \think\facade\Config::get('oss.bucket.custom');
         
         //选取本地文件上传
         $oss->upload($local, $object);
