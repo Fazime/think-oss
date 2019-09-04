@@ -1,6 +1,6 @@
 {
   "name": "fazi/think-oss",
-  "description": "Aliyun Oss SDK From think6",
+  "description": "阿里云OSS SDK for ThinkPHP6",
   "keywords": [
     "thinkphp",
     "oss"
@@ -15,8 +15,8 @@
   "license": "MIT",
   "require": {
     "php": ">=7.1.0",
-    "aliyuncs/oss-sdk-php": "^2.3",
-    "topthink/framework": "^6.0.0"
+    "topthink/framework": "^6.0.0",
+    "aliyuncs/oss-sdk-php": "^2.3"
   },
   "autoload": {
     "psr-4": {
