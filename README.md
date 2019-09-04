@@ -22,13 +22,13 @@
         
         php think oss:init
         
-    将在 ***.env*** 中添加 OSS的endpoint配置（在阿里云同区ESC环境可设成内网地址），并在 全局config 目录下生成 oss.php 配置文件。
+    将在 ***.env*** 中添加 OSS的endpoint配置，并在 全局config 目录下生成 oss.php 配置文件。
    
  ##快速使用
  
  - 配置
  
-    ***.env*** 里配置好阿里云endpoint
+    ***.env*** 里配置好阿里云endpoint （在阿里云同区ECS环境可设成内网地址）
     
     ***/config/oss.php*** 阿里云子accessKeyIds相关配置
     
@@ -63,6 +63,7 @@
             return json($e->getError(), 501);
         }
         
- ##后言
+
+##后言
  
-官方SDK已经非常完善，本包没有缩减任何官方SDK的功能，只是封装并简化一些个人经常使用总结出来的方法。目前只推出 put 和 upload 方法。今后一定会丰富完善的。感谢大家的支持。
+官方SDK已经非常完善，本包没有缩减任何官方SDK的功能，只是封装并简化一些个人经常使用总结出来的方法。目前只推出 put 和 upload 方法。今后一定会丰富完善的。感谢大家的支持。欢迎访问我的个人主面 https://www.fazi.me/
