@@ -21,33 +21,49 @@ class OSS extends OssClient
 		
 		$config = Config::get('oss');
 		
-		if( !empty($config['endpoint']) || !empty($config['accessKeyId']) || !empty($config['accessKeySecret']) || !empty($config['bucket']) ) {
+		if( empty($config['endpoint']) || empty($config['accessKeyId']) || empty($config['accessKeySecret']) || empty($config['bucket']) ) {
 			throw new OssException('请先设置文件中的endpoint、accessKeyId、accessKeySecret、bucket');
 		}
 		//默认BUCKET
 		$this->bucket = $bucket ?: $config['bucket'];
 		
 		//创建实例
-		parent::__construct($config['accessKeyId'], $config['accessKeyId'], $config['accessKeyId']);
+		parent::__construct($config['accessKeyId'], $config['accessKeySecret'], $config['endpoint']);
 	
 	}
 	
 	/**
-	 * 从内存上传到Object Path
-	 * @param $content
-	 * @param $path
+	 * 上传内存中的内容
+	 * @param string $content  内容
+	 * @param string $object   要保存的地址
 	 * @throws OssException;
 	 * @return array
 	 */
-	public function put($content , $path) {
+	public function put($content , $object)
+	{
 		
 		try {
-			return $this->putObject($this->bucket, $path, $content);
+			return $this->putObject($this->bucket, $object, $content);
 		} catch (OssException $e) {
 			throw new OssException($e->getMessage());
 		}
 		
 	}
 	
-	
+	/**
+	 * 上传本地文件
+	 *
+	 * @param string $local 本地文件地址
+	 * @param string $object object名称
+	 * @return array
+	 * @throws OssException
+	 */
+	public function upload($local, $object)
+	{
+		try {
+			return $this->uploadFile($this->bucket, $object, $local);
+		} catch (OssException $e) {
+			throw new OssException($e->getMessage());
+		}
+	}
 }
