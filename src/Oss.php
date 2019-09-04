@@ -21,11 +21,11 @@ class OSS extends OssClient
 		
 		$config = Config::get('oss');
 		
-		if( empty($config['endpoint']) || empty($config['accessKeyId']) || empty($config['accessKeySecret']) || empty($config['bucket']) ) {
+		if( empty($config['endpoint']) || empty($config['accessKeyId']) || empty($config['accessKeySecret']) || empty($config['bucket']['default']) ) {
 			throw new OssException('请先设置文件中的endpoint、accessKeyId、accessKeySecret、bucket');
 		}
 		//默认BUCKET
-		$this->bucket = $bucket ?: $config['bucket'];
+		$this->bucket = !empty($config['bucket'][$bucket]) ? $config['bucket'][$bucket] : $config['bucket']['default'];
 		
 		//创建实例
 		parent::__construct($config['accessKeyId'], $config['accessKeySecret'], $config['endpoint']);
@@ -34,7 +34,7 @@ class OSS extends OssClient
 	
 	/**
 	 * 上传内存中的内容
-	 * @param string $content  内容
+	 * @param string $content  内存的内容
 	 * @param string $object   要保存的地址
 	 * @throws OssException;
 	 * @return array

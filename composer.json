@@ -1,6 +1,10 @@
 {
   "name": "fazi/think-oss",
   "description": "Aliyun Oss SDK From think6",
+  "keywords": [
+    "thinkphp",
+    "oss"
+  ],
   "authors": [
     {
       "name": "Fazi",
@@ -10,7 +14,7 @@
   ],
   "license": "MIT",
   "require": {
-    "php": "^7.0",
+    "php": ">=7.1.0",
     "aliyuncs/oss-sdk-php": "^2.3",
     "topthink/framework": "^6.0.0"
   },
