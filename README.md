@@ -2,7 +2,7 @@
 
 ## 概述
 
-本包是封装了Aliyun官方发布的SDK，使得能在ThinkPHP6里快速使用。
+本包封装了Aliyun官方发布的SDK，使得能在ThinkPHP6里快速使用。
 
 ## 安装
 
@@ -21,6 +21,7 @@
 -   依赖安装成功后，ThinkPHP6 根目录运行
         
         php think oss:init
+        
     将在 ***.env*** 中添加 OSS的endpoint配置（在阿里云同区ESC环境可设成内网地址），并在 全局config 目录下生成 oss.php 配置文件。
    
  ##快速使用
@@ -35,12 +36,18 @@
         $local = 'test/test.txt';
         $content = file_get_contents($local);
         $object = 'yun/test.txt';
+        
         //实例并调用
         $oss = (new OSS());
         //从内存直接上传
         $oss->put($content, $object);
-        //选取本地文件并切换Buckect上传
-        $oss->bucket = 'custom';#配置文件中自定义名
+        
+        //切换bucket
+        $oss->setBucket('custom');#配置文件中自定义名
+        //或者
+        $oss->bucket = think\facade\Config::get('oss.bucket.custom');
+        
+        //选取本地文件上传
         $oss->upload($local, $object);
         
  - 类继承了SDK的OssClient ，所以可以正常调用SDK的方法:

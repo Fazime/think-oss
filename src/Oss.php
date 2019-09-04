@@ -25,11 +25,21 @@ class OSS extends OssClient
 			throw new OssException('请先设置文件中的endpoint、accessKeyId、accessKeySecret、bucket');
 		}
 		//默认BUCKET
-		$this->bucket = !empty($config['bucket'][$bucket]) ? $config['bucket'][$bucket] : $config['bucket']['default'];
+		$this->bucket = $bucket && !empty($config['bucket'][$bucket]) ? $config['bucket'][$bucket] : $config['bucket']['default'];
 		
 		//创建实例
 		parent::__construct($config['accessKeyId'], $config['accessKeySecret'], $config['endpoint']);
 	
+	}
+	
+	/**
+	 * 切换bucket
+	 * @param string $bucket 配置里自定义的键值
+	 */
+	public function setBucket($bucket)
+	{
+		$config = Config::get('oss.bucket');
+		$this->bucket = $bucket && !empty($config[$bucket]) ? $config[$bucket] : $config['default'];
 	}
 	
 	/**
@@ -41,7 +51,6 @@ class OSS extends OssClient
 	 */
 	public function put($content , $object)
 	{
-		
 		try {
 			return $this->putObject($this->bucket, $object, $content);
 		} catch (OssException $e) {
