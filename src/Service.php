@@ -1,9 +1,9 @@
 <?php
 
 
-namespace fazi\oss;
+namespace Fazi\oss;
 
-use fazi\oss\command\InitCommand;
+use Fazi\oss\command\InitCommand;
 
 class Service extends \think\Service
 {

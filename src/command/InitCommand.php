@@ -1,7 +1,7 @@
 <?php
 
 
-namespace fazi\oss\command;
+namespace Fazi\oss\command;
 
 use think\console\Input;
 use think\console\Output;
