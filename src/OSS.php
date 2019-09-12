@@ -78,7 +78,7 @@ class OSS extends OssClient
 	
 	
 	/**
-	 * 下载OBJECT到内存
+	 * 下载文件到内存
 	 * @param $object
 	 * @return string
 	 * @throws OssException
