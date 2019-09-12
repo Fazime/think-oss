@@ -1,5 +1,5 @@
 <?php
-namespace Fazi\oss;
+namespace fazi\oss;
 
 use OSS\Core\OssException;
 use OSS\OssClient;

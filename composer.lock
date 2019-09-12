@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "11050fb33b171e03a17c303c70a7b94e",
+    "content-hash": "d909d589071c012fd8cb5f5e5816012d",
     "packages": [
         {
             "name": "aliyuncs/oss-sdk-php",
@@ -195,41 +195,6 @@
             ],
             "description": "An adapter decorator to enable meta-data caching.",
             "time": "2018-07-09T20:51:04+00:00"
-        },
-        {
-            "name": "okcoder/think5-apidoc",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://gitee.com/okcoder/think5-apidoc.git",
-                "reference": "38eaef8ffdd1893d946740095b73e054971446d8"
-            },
-            "type": "think-extend",
-            "extra": {
-                "think-config": {
-                    "okcoder_doc": "config.php"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "OkCoder\\ApiDoc\\": "src"
-                },
-                "files": [
-                    "helper.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "okcoder",
-                    "email": "1046512080@qq.com"
-                }
-            ],
-            "description": "ThinkPHP5 API文档自动生成",
-            "time": "2019-04-12T06:31:28+00:00"
         },
         {
             "name": "opis/closure",
@@ -680,9 +645,7 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "okcoder/think5-apidoc": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
