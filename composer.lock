@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bc302a8f5cf62e90984f360a6f5c2f79",
+    "content-hash": "11050fb33b171e03a17c303c70a7b94e",
     "packages": [
         {
             "name": "aliyuncs/oss-sdk-php",
@@ -59,12 +59,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "34ef189ac581339fa1f8338d110bccb968e0746d"
+                "reference": "b604def3fc47186c45647546f312441ba1072659"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/34ef189ac581339fa1f8338d110bccb968e0746d",
-                "reference": "34ef189ac581339fa1f8338d110bccb968e0746d",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/b604def3fc47186c45647546f312441ba1072659",
+                "reference": "b604def3fc47186c45647546f312441ba1072659",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -141,7 +141,7 @@
                 "sftp",
                 "storage"
             ],
-            "time": "2019-09-03T05:18:43+00:00"
+            "time": "2019-09-05T10:53:29+00:00"
         },
         {
             "name": "league/flysystem-cached-adapter",
@@ -518,12 +518,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/top-think/framework.git",
-                "reference": "7c7d4e0e4afb7156167a9714fdbd26b6f7aa8934"
+                "reference": "4775e27cf003c7d3989507e7d8e2db7625c760cb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/top-think/framework/zipball/7c7d4e0e4afb7156167a9714fdbd26b6f7aa8934",
-                "reference": "7c7d4e0e4afb7156167a9714fdbd26b6f7aa8934",
+                "url": "https://api.github.com/repos/top-think/framework/zipball/4775e27cf003c7d3989507e7d8e2db7625c760cb",
+                "reference": "4775e27cf003c7d3989507e7d8e2db7625c760cb",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -578,7 +578,7 @@
                 "orm",
                 "thinkphp"
             ],
-            "time": "2019-09-01T11:17:14+00:00"
+            "time": "2019-09-12T14:56:30+00:00"
         },
         {
             "name": "topthink/think-helper",
@@ -631,12 +631,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/top-think/think-orm.git",
-                "reference": "49c18c9ba68403451031f6afac9c6091cb071115"
+                "reference": "739bea3c3a6c3a84fbfbdc7d6334a4bae4d37df9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/top-think/think-orm/zipball/49c18c9ba68403451031f6afac9c6091cb071115",
-                "reference": "49c18c9ba68403451031f6afac9c6091cb071115",
+                "url": "https://api.github.com/repos/top-think/think-orm/zipball/739bea3c3a6c3a84fbfbdc7d6334a4bae4d37df9",
+                "reference": "739bea3c3a6c3a84fbfbdc7d6334a4bae4d37df9",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -646,6 +646,7 @@
                 ]
             },
             "require": {
+                "ext-json": "*",
                 "php": ">=7.1.0",
                 "psr/log": "~1.0",
                 "psr/simple-cache": "^1.0",
@@ -673,7 +674,7 @@
                 "database",
                 "orm"
             ],
-            "time": "2019-09-02T06:01:06+00:00"
+            "time": "2019-09-12T08:19:39+00:00"
         }
     ],
     "packages-dev": [],

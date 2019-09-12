@@ -75,4 +75,20 @@ class OSS extends OssClient
 			throw new OssException($e->getMessage());
 		}
 	}
+	
+	
+	/**
+	 * 下载OBJECT到内存
+	 * @param $object
+	 * @return string
+	 * @throws OssException
+	 */
+	public function read( $object )
+	{
+		try{
+			return $this->getObject($this->bucket, $object);
+		} catch(OssException $e) {
+			throw new OssException($e->getMessage());
+		}
+	}
 }
