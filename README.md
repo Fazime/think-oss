@@ -55,7 +55,7 @@
         $data = $oss->read($object);
         
         //常用方法4：复制云到云（支持不同Bucket间操作）
-        $oss->copy($to_object, $from_object, $form_bucket);#$form_bucket为配置文件中自定义的键值，不存在则取该值
+        $oss->copy($to_object, $from_object, $form_bucket);#$form_bucket为配置文件中自定义的键值，不存在则取该值。为空则为当前BUCKET
         
         
  - 类继承了SDK的OssClient ，所以可以正常调用SDK的方法:
