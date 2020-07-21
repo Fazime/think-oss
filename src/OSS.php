@@ -34,12 +34,22 @@ class OSS extends OssClient
 	
 	/**
 	 * 切换bucket
-	 * @param string $bucket 配置里自定义的键值
+	 * @param string $bucket 配置里自定义的键值或原值
 	 */
 	public function setBucket($bucket)
 	{
+		$this->bucket = $this->getBucket($bucket);
+	}
+	
+	/**
+	 * 读取BUCKET：存在配置取配置值否则使用本值
+	 * @param string $bucket
+	 * @return string
+	 */
+	public function getBucket($bucket)
+	{
 		$config = Config::get('oss.bucket');
-		$this->bucket = $bucket && !empty($config[$bucket]) ? $config[$bucket] : $config['default'];
+		return $bucket && !empty($config[$bucket]) ? $config[$bucket] : $bucket;
 	}
 	
 	/**
@@ -78,15 +88,28 @@ class OSS extends OssClient
 	
 	
 	/**
-	 * 下载文件到内存
+	 * 读取文件到内存
 	 * @param $object
 	 * @return string
-	 * @throws OssException
 	 */
 	public function read( $object )
 	{
+		return $this->getObject($this->bucket, $object);
+	}
+	
+	/**
+	 * 复制
+	 * @param string $to_object
+	 * @param string $from_object
+	 * @param string $fromBucket
+	 * @return null
+	 * @throws OssException
+	 */
+	public function copy($to_object, $from_object, $fromBucket = '')
+	{
 		try{
-			return $this->getObject($this->bucket, $object);
+			$fromBucketPath = $fromBucket ? $this->getBucket($fromBucket) : $this->bucket;
+			return $this->copyObject($fromBucketPath, $from_object, $this->bucket, $to_object);
 		} catch(OssException $e) {
 			throw new OssException($e->getMessage());
 		}

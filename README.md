@@ -2,7 +2,7 @@
 
 ## 概述
 
-本包封装了Aliyun官方发布的SDK，使得能在ThinkPHP6里快速使用。
+本包封装了Aliyun官方发布的SDK，使得能在ThinkPHP6里快速使用。适用于单个或多个BUCKET间操作。
 
 ## 安装
 
@@ -40,16 +40,23 @@
         
         //实例并调用
         $oss = (new OSS());
-        //从内存直接上传
+        //常用方法1：从内存直接上传
         $oss->put($content, $object);
         
         //切换bucket
-        $oss->setBucket('custom');#配置文件中自定义名
-        //或者
+        $oss->setBucket('custom');#配置文件中自定义名，不存在则取该值
+        //或者直接赋值
         $oss->bucket = \think\facade\Config::get('oss.bucket.custom');
         
-        //选取本地文件上传
+        //常用方法2：选择本地文件上传
         $oss->upload($local, $object);
+        
+        //常用方法3：读取云文件到内存
+        $data = $oss->read($object);
+        
+        //常用方法4：复制云到云（支持不同Bucket间操作）
+        $oss->copy($to_object, $from_object, $form_bucket);#$form_bucket为配置文件中自定义的键值，不存在则取该值
+        
         
  - 类继承了SDK的OssClient ，所以可以正常调用SDK的方法:
         
@@ -63,7 +70,10 @@
             return json($e->getError(), 501);
         }
         
+## 更新
+2020-07-22 增加方法read和copy。因为已经开始用TP6重构之前的项目。故会继续更新。分享总结我使用OSS的经验  
 
 ## 后言
- 
-官方SDK已经非常完善，本包没有缩减任何官方SDK的功能，只是封装并简化一些个人经常使用总结出来的方法。目前只推出 put 和 upload 方法。今后一定会丰富完善的。感谢大家的支持。欢迎访问我的个人主页 https://www.fazi.me/
+   
+官方SDK已经非常完善，本包没有缩减任何官方SDK的功能，只是封装并简化一些个人经常使用总结出来的方法。目前只推出 put 和 upload 方法。
+今后一定会丰富完善的。感谢大家的支持。欢迎访问我的个人主页 https://www.fazi.me/
