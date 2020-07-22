@@ -29,6 +29,5 @@
         "Fazi\\oss\\Service"
       ]
     }
-  },
-  "minimum-stability": "dev"
+  }
 }

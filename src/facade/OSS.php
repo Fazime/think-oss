@@ -1,6 +1,6 @@
 <?php
 
-namespace Fazi\oss\facade;
+namespace fazi\oss\facade;
 
 use think\Facade;
 
@@ -8,6 +8,6 @@ class OSS extends Facade
 {
     protected static function getFacadeClass()
     {
-        return 'Fazi\oss\OSS';
+        return 'fazi\oss\OSS';
     }
 }

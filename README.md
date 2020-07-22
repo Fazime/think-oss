@@ -13,7 +13,7 @@
    或者在根目录的 `composer.json` 文件中添加：
 
         "require": {
-            "fazi/think-oss": "^0.1"
+            "fazi/think-oss": "^1.0"
         }
         
    然后运行命令 `composer install` 安装依赖。
@@ -32,7 +32,24 @@
     
     ***/config/oss.php*** 阿里云子accessKeyIds相关配置
     
+    配置文件说明
+    
+        return [
+            //设置endpoint 默认公网，同区ECS可使用内网地址流量免费
+             'endpoint'      => Env::get('OSS_ENDPOINT'),
+             //推荐使用子用户access key
+             'accessKeyId'  => '',
+             'accessKeySecret'  => '',
+            //默认Bucket 实际业务可能用到多个BUCKET
+             'bucket'  => [
+                'default' => '',#默认
+                'custom' => '',#自定义
+             ],
+         ];
+             
  - 目前未集成ThinkPHP6上传功能。所以需要在需要OSS上传的时候调用。
+ 
+        use fazi\oss\OSS; 
         
         $local = 'test/test.txt';
         $content = file_get_contents($local);
@@ -55,9 +72,14 @@
         $data = $oss->read($object);
         
         //常用方法4：复制云到云（支持不同Bucket间操作）
-        $oss->copy($to_object, $from_object, $form_bucket);#$form_bucket为配置文件中自定义的键值，不存在则取该值。为空则为当前BUCKET
+        $oss->copy($to_object, $from_object, $form_bucket);#$form_bucket为配置文件中自定义的键值，不存在则取该值。为空则为当前BUCKET。
         
         
+ - 支持facade调用(使用默认‘default’ bucket):
+ 
+        use fazi\oss\facade\OSS;
+        OSS::upload($local,$object);
+ 
  - 类继承了SDK的OssClient ，所以可以正常调用SDK的方法:
         
         $oss = (new OSS());
