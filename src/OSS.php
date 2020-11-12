@@ -114,4 +114,15 @@ class OSS extends OssClient
 			throw new OssException($e->getMessage());
 		}
 	}
+    
+    /**
+     * 判断是否存在对象
+     * @param $object
+     * @param $bucket
+     * @return bool
+     */
+    public function has($object, $bucket = null)
+    {
+        return $this->doesObjectExist($bucket??$this->bucket, $object);
+    }
 }
