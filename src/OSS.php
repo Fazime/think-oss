@@ -1,5 +1,4 @@
 <?php
-
 namespace fazi\oss;
 
 use OSS\Core\OssException;
@@ -17,12 +16,12 @@ class OSS extends OssClient
      * @param string $bucket
      * @throws OssException
      */
-    public function __construct($bucket = '')
+    public function __construct( $bucket = '' )
     {
         
         $config = Config::get('oss');
         
-        if (empty($config['endpoint']) || empty($config['accessKeyId']) || empty($config['accessKeySecret']) || empty($config['bucket']['default'])) {
+        if( empty($config['endpoint']) || empty($config['accessKeyId']) || empty($config['accessKeySecret']) || empty($config['bucket']['default']) ) {
             throw new OssException('请先设置文件中的endpoint、accessKeyId、accessKeySecret、bucket');
         }
         //默认BUCKET
@@ -40,6 +39,7 @@ class OSS extends OssClient
     public function setBucket($bucket)
     {
         $this->bucket = $this->getBucket($bucket);
+        return $this;
     }
     
     /**
@@ -55,12 +55,12 @@ class OSS extends OssClient
     
     /**
      * 上传内存中的内容
-     * @param string $content 内存的内容
-     * @param string $object  要保存的地址
+     * @param string $content  内存的内容
+     * @param string $object   要保存的地址
      * @throws OssException;
      * @return array
      */
-    public function put($content, $object)
+    public function put($content , $object)
     {
         try {
             return $this->putObject($this->bucket, $object, $content);
@@ -73,10 +73,10 @@ class OSS extends OssClient
     /**
      * 上传本地文件
      *
-     * @param string $local  本地文件地址
+     * @param string $local 本地文件地址
      * @param string $object object名称
-     * @throws OssException
      * @return array
+     * @throws OssException
      */
     public function upload($local, $object)
     {
@@ -89,18 +89,13 @@ class OSS extends OssClient
     
     
     /**
-     * 读取文件到内存[存到本地]
-     * @param string $object
-     * @param string|null $save_file 路径
+     * 读取文件到内存
+     * @param $object
      * @return string
      */
-    public function read($object, $save_file = null)
+    public function read( $object )
     {
-        $options = $save_file ? [
-            OssClient::OSS_FILE_DOWNLOAD => $save_file,
-        ] : [];
-        
-        return $this->getObject($this->bucket, $object, $options);
+        return $this->getObject($this->bucket, $object);
     }
     
     /**
@@ -108,73 +103,43 @@ class OSS extends OssClient
      * @param string $to_object
      * @param string $from_object
      * @param string $fromBucket
-     * @throws OssException
      * @return null
+     * @throws OssException
      */
     public function copy($to_object, $from_object, $fromBucket = '')
     {
-        try {
+        try{
             $fromBucketPath = $fromBucket ? $this->getBucket($fromBucket) : $this->bucket;
             return $this->copyObject($fromBucketPath, $from_object, $this->bucket, $to_object);
-        } catch (OssException $e) {
+        } catch(OssException $e) {
             throw new OssException($e->getMessage());
         }
     }
     
     /**
-     * @param string $object      对象路径
-     * @param null|string $bucket 临时指定BUCKET
-     * @throws OssException
+     * 判断是否存在对象
+     * @param $object
+     * @param $bucket
      * @return bool
      */
     public function has($object, $bucket = null)
     {
-        try {
-            return $this->doesObjectExist($bucket ?? $this->bucket, $object);
-        } catch (OssException $e) {
-            throw new OssException($e->getMessage());
-        }
+        return $this->doesObjectExist($bucket??$this->bucket, $object);
     }
     
     /**
-     * 指定前缀（目录）搜索文件和目录
-     * @param $path
-     * @param null $bucket
-     * @throws OssException
-     * @return array[]
+     * 删除单个或多个对象
+     * @param string|array $object
      */
-    public function dir($path, $bucket = null)
+    public function delete($object)
     {
-        //配置
-        $options = [
-            'delimiter' => '/',
-            'prefix'    => $path,
-            'max-keys'  => 1000,
-            'marker'    => '/',
-        ];
-        
         try {
-            $listObjectInfo = $this->listObjects($bucket ?? $this->bucket, $options);
-            $dirInfo = $listObjectInfo->getPrefixList();
-            $listInfo = $listObjectInfo->getObjectList();
-            //格式
-            $dir = $list = [];
-            if (!empty($dirInfo)) {
-                foreach ($dirInfo as $d) {
-                    $dir[] = $d->getPrefix();
-                }
+            if (is_string($object)) {
+                $this->deleteObject($this->bucket, $object);
+            } elseif (is_array($object)) {
+                $this->deleteObjects($this->bucket, $object);
             }
-            if (!empty($listInfo)) {
-                foreach ($listInfo as $l) {
-                    $key = $l->getKey();
-                    $key != $path && $list[] = $key;
-                }
-            }
-            return [
-                'dir'  => $dir,
-                'list' => $list,
-            ];
-        } catch (OssException $e) {
+        } catch (\Exception $e) {
             throw new OssException($e->getMessage());
         }
     }
