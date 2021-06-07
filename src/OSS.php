@@ -91,11 +91,16 @@ class OSS extends OssClient
     /**
      * 读取文件到内存
      * @param $object
+     * @param string $style 样式：image/resize,m_fixed,w_100,h_100/rotate,90| style/样式名
+     * @param string $local 需要保存的本地路径
+     * @param array $options
      * @return string
      */
-    public function read( $object )
+    public function read( $object, $style = '', $local = '', $options = [])
     {
-        return $this->getObject($this->bucket, $object);
+        $style && $options[self::OSS_PROCESS] = $style;
+        $local && $options[self::OSS_FILE_DOWNLOAD] = $local;
+        return $this->getObject($this->bucket, $object, $options);
     }
     
     /**

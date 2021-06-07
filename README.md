@@ -68,8 +68,13 @@
         //常用方法2：选择本地文件上传
         $oss->upload($local, $object);
         
-        //常用方法3：读取云文件到内存
+        //常用方法3.1：读取云文件到内存
         $data = $oss->read($object);
+
+
+        //常用方法3.2：直接保存云文件到本地（可选样式）
+        //样式：image/resize,m_fixed,w_100,h_100/rotate,90| style/样式名
+        $data = $oss->read($object, $style, $local);
         
         //常用方法4：复制云到云（支持不同Bucket间操作）
         $oss->copy($to_object, $from_object, $form_bucket);#$form_bucket为配置文件中自定义的键值，不存在则取该值。为空则为当前BUCKET。
@@ -93,6 +98,7 @@
         }
         
 ## 更新
+2021-06-07 read方法增加参数（样式、本地路径、自定义参数）  
 2021-01-29 增加方法delete删除对象（支持单个或多个对象）  
 2020-11-19 增加方法dir遍历目录（目录或文件列表）  
 2020-11-12 增加方法has判断对象是否存在  
