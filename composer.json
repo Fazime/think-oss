@@ -1,6 +1,6 @@
 {
   "name": "fazi/think-oss",
-  "description": "阿里云OSS SDK for ThinkPHP6",
+  "description": "阿里云OSS SDK for ThinkPHP6/8",
   "keywords": [
     "thinkphp",
     "oss"
@@ -14,8 +14,8 @@
   ],
   "license": "MIT",
   "require": {
-    "php": ">=7.1.0",
-    "topthink/framework": "^6.0.0",
+    "php": ">=7.1.0||>=8.0.0",
+    "topthink/framework": "^6.0.0||^8.0.0",
     "aliyuncs/oss-sdk-php": "^2.3"
   },
   "autoload": {
